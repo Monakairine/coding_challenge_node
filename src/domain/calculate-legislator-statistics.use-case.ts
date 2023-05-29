@@ -1,10 +1,12 @@
-export function calculateLegislatorStatistics(
-  legislatorsData,
-  voteResultsData,
-  votesData,
-  billsData
-) {
-  const legislatorStatistics = [];
+import { LegislatorsModel, VoteResultsModel, VotesModel, BillsModel, LegislatorStatsModel } from "./models";
+
+export const calculateLegislatorStatistics = (
+  legislatorsData: LegislatorsModel[],
+  voteResultsData: VoteResultsModel[],
+  votesData: VotesModel[],
+  billsData: BillsModel[]
+): LegislatorStatsModel[] => {
+  const legislatorStatistics: LegislatorStatsModel[] = [];
 
   legislatorsData.forEach((legislator) => {
     const { id, name } = legislator;
@@ -17,9 +19,9 @@ export function calculateLegislatorStatistics(
         if (vote) {
           const bill = billsData.find((bill) => bill.id === vote.bill_id);
           if (bill) {
-            if (voteResult.vote_type === "1") {
+            if (voteResult.vote_type === 1) {
               numSupportedBills++;
-            } else if (voteResult.vote_type === "2") {
+            } else if (voteResult.vote_type === 2) {
               numOpposedBills++;
             }
           }
@@ -36,4 +38,4 @@ export function calculateLegislatorStatistics(
   });
 
   return legislatorStatistics;
-}
+};

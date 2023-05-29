@@ -10,9 +10,6 @@ const votesDataPromise = processCSVFile("./src/data/votes.csv");
 const billsDataPromise = processCSVFile("./src/data/bills.csv");
 
 
-// Reading and processing the CSV files
-
-
 Promise.all([
   legislatorsDataPromise,
   voteResultsDataPromise,
